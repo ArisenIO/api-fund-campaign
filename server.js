@@ -1,6 +1,13 @@
 require('./modal');
 const express = require('express');
 const server  = express();
+const user = require('./routes/user');
+const bodyParser = require('body-parser');
+
+server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({extended: true}));
+
+server.use('/', user);
 
 server.use(function(req, res, next) {
     res.status(404);
